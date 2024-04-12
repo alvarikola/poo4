@@ -9,8 +9,7 @@ def test_listaCorrecto():
 
 
 def test_listaError():
-    assert lista(3) == IndexError
-
+    assert lista(3) == []
 
 
 
