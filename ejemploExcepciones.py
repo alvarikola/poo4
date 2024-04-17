@@ -15,9 +15,13 @@ class EjemploExecpciones:
         return numero + x
 
     # FileNotFoundError
-    def fileNotFoundError():
-        pass #esto es con open
-
+    def fileNotFoundError(self, file):
+        a = open(file, "r")        #esto es con open
+        if a != open:
+            raise FileNotFoundError("No se encuentra")
+        
+        return a
+    
 
     # TypeError
     def typeError(self, a:int, b:str):
@@ -29,10 +33,22 @@ class EjemploExecpciones:
 
     # PermissionError
     def permissionError(self):
-        pass
+        a = open("C:\Users/esbirro", "r")
+        if a != open:
+            raise PermissionError("No tienes permisos")
+        
+        return a
+
+
     # IndexError
-    def indexError(self):
-        pass
+    def indexError(self, i:int):
+        listaFruta = ["Manzana", "Plátano", "Pera"]
+        if i >= len(listaFruta):
+            raise IndexError("No esta esa posicion")
+        
+        return listaFruta[i]
+    
+
     # KeyboardInterrupt
     def keyboardInterrupt(self):
         pass
