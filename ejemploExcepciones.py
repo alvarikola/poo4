@@ -12,16 +12,19 @@ class EjemploExecpciones:
         if numero + int(x):
             raise ValueError("No puedes sumar una letra")
 
+        return numero + x
 
     # FileNotFoundError
     def fileNotFoundError():
-        pass
+        pass #esto es con open
 
 
     # TypeError
     def typeError(self, a:int, b:str):
-        if a + b:
-            raise TypeError("No puedes sumar a un string")
+        if type(a) == str:
+            raise TypeError("No es el tipo correcto")
+        
+        return type(a)
 
 
     # PermissionError
