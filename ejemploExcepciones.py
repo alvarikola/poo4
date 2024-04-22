@@ -1,4 +1,4 @@
-class EjemploExecpciones:
+class EjemploExcepciones:
     # ZeroDivisionError
     def zeroDivisionError(self, *, num:int, den:int):
         if (den == 0):
@@ -8,15 +8,15 @@ class EjemploExecpciones:
 
 
     # ValueError
-    def valueError(self, numero:int, x:str):
-        if numero + int(x):
+    def valueError(self):
+        if 1 + int("x"):
             raise ValueError("No puedes sumar una letra")
 
-        return numero + x
+        return 1 + "x"
 
     # FileNotFoundError
-    def fileNotFoundError(self, file):
-        a = open(file, "r")        #esto es con open
+    def fileNotFoundError(self):
+        a = open("hola.txt", "r")
         if a != open:
             raise FileNotFoundError("No se encuentra")
         
@@ -24,24 +24,25 @@ class EjemploExecpciones:
     
 
     # TypeError
-    def typeError(self, a:int, b:str):
+    def typeError(self, a:int):
         if type(a) == str:
             raise TypeError("No es el tipo correcto")
         
         return type(a)
 
 
-    # PermissionError
+    #PermissionError
     def permissionError(self):
-        a = open("C:\Users/esbirro", "r")
-        if a != open:
-            raise PermissionError("No tienes permisos")
-        
-        return a
+        try:
+            a = open("adios.txt", "r")
+            a.write("hola")
+        except:
+            raise PermissionError
 
 
     # IndexError
-    def indexError(self, i:int):
+    def indexError(self):
+        i = 5
         listaFruta = ["Manzana", "Plátano", "Pera"]
         if i >= len(listaFruta):
             raise IndexError("No esta esa posicion")
@@ -51,10 +52,25 @@ class EjemploExecpciones:
 
     # KeyboardInterrupt
     def keyboardInterrupt(self):
-        pass
+        try:
+            prueba = input("Escribe: ")
+            if prueba != KeyboardInterrupt:
+                True
+        except:
+            raise KeyboardInterrupt("Se interrumpio el programa")   
+        
+        
     # UnicodeDecodeError
     def unicodeDecodeError(self):
-        pass
+        try:
+            a = open("binario.exe", "x")
+            a.write("asfa")
+        except:
+            raise UnicodeDecodeError("UnicodeDecodeError")
+
     # AttributeError
     def attributeError(self):
-        pass
+        a = "hola".abduzcan
+        if a == AttributeError:
+            raise AttributeError
+        return a
