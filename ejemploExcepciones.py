@@ -63,9 +63,10 @@ class EjemploExcepciones:
     # UnicodeDecodeError
     def unicodeDecodeError(self):
         try:
-            open("platano.exe", "r")
-        except:
-            raise UnicodeDecodeError("UnicodeDecodeError")
+            b"\x81".decode("utf-8")
+        except UnicodeDecodeError as e:
+            raise e
+        
 
     # AttributeError
     def attributeError(self):
@@ -73,3 +74,6 @@ class EjemploExcepciones:
         if a == AttributeError:
             raise AttributeError
         return a
+    
+
+
