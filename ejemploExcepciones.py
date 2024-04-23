@@ -64,8 +64,8 @@ class EjemploExcepciones:
     def unicodeDecodeError(self):
         try:
             b"\x81".decode("utf-8")
-        except UnicodeDecodeError as e:
-            raise e
+        except UnicodeDecodeError as error:
+            raise error
         
 
     # AttributeError
