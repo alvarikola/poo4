@@ -1,0 +1,6 @@
+@echo
+cls
+echo this is my New CMD to open chrome or opera with notepad
+pause
+start Chrome.exe
+Stop

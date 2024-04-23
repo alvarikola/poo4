@@ -63,8 +63,7 @@ class EjemploExcepciones:
     # UnicodeDecodeError
     def unicodeDecodeError(self):
         try:
-            a = open("binario.exe", "x")
-            a.write("asfa")
+            open("platano.exe", "r")
         except:
             raise UnicodeDecodeError("UnicodeDecodeError")
 
