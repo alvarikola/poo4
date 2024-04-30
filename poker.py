@@ -5,7 +5,7 @@ def load_card_glyphs(path: str = 'cards.dat') -> dict[str, str]:
     '''Retorna un diccionario donde las claves serán los palos
     y los valores serán cadenas de texto con los glifos de las
     cartas sin ningún separador'''
-    ...
+    # return dict[]
 
 
 class Card:
@@ -33,17 +33,31 @@ class Card:
         - self.value deberá almacenar el valor de la carta (1-13)'''
         self.value = value
         self.suit = suit
+        #simbolos = "♣◆❤♠"
+        if type(self.value) == str:
+            raise InvalidCardError(f'🃏 Invalid card: {repr(value)} is not a supported symbol')
+        if self.value < 1 or self.value > 13 :
+            raise InvalidCardError(f'🃏 Invalid card: {repr(value)} is not a supported value')
+        if suit != self.CLUBS or suit != self.DIAMONDS or suit != self.HEARTS or suit != self.SPADES:
+            raise InvalidCardError(f"🃏 Invalid card: {repr(suit)} is not a supported suit")
+        #if suit not in simbolos:
+            #raise InvalidCardError(f"🃏 Invalid card: {repr(suit)} is not a supported suit")
 
     @property
     def cmp_value(self) -> int:
         '''Devuelve el valor (numérico) de la carta para comparar con otras.
         Tener en cuenta el AS.'''
-        ...
+        if self.value == 'A':
+            return 1
+        elif self.value == 'K':
+            return 13
+        else:
+            return int(self.value)
 
     def __repr__(self):
         '''Devuelve el glifo de la carta'''
-        ...
-
+        
+    
     def __eq__(self, other: Card | object):
         '''Indica si dos cartas son iguales'''
         ...
