@@ -31,7 +31,8 @@ class Card:
 
         - self.suit deberá almacenar el palo de la carta '♣◆❤♠'.
         - self.value deberá almacenar el valor de la carta (1-13)'''
-        ...
+        self.value = value
+        self.suit = suit
 
     @property
     def cmp_value(self) -> int:
@@ -67,9 +68,9 @@ class Card:
         ...
 
     @classmethod
-    def get_available_suits(cls) -> str:
+    def get_available_suits(cls) -> str:        # El cls es como el self pero se puede poner el nombre que quieras
         '''Devuelve todos los palos como una cadena de texto'''
-        ...
+        return cls.CLUBS + cls.DIAMONDS + cls.HEARTS + cls.SPADES
 
     @classmethod
     def get_cards_by_suit(cls, suit: str):
