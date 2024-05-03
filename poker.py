@@ -76,11 +76,11 @@ class Card:
 
     def __lt__(self, other: Card):
         '''Indica si una carta vale menos que otra'''
-        return self.cmp_value < other.cmp_value
+        return self.cmp_value > other.cmp_value
 
     def __gt__(self, other: Card):
         '''Indica si una carta vale más que otra'''
-        return self.cmp_value > other.cmp_value
+        return self.cmp_value < other.cmp_value
 
 
     def __add__(self, other: Card) -> Card:
@@ -102,7 +102,8 @@ class Card:
     @classmethod
     def get_cards_by_suit(cls, suit: str):
         '''Función generadora que devuelve los glifos de las cartas por su palo'''
-        ...
+        if suit == cls.DIAMONDS:
+            return cls.GLYPHS
 
 
 class InvalidCardError(Exception):
