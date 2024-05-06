@@ -5,7 +5,7 @@ def load_card_glyphs(path: str = 'cards.dat') -> dict[str, str]:
     '''Retorna un diccionario donde las claves serán los palos
     y los valores serán cadenas de texto con los glifos de las
     cartas sin ningún separador'''
-    return {'♣': '🃑 🃒 🃓 🃔 🃕 🃖 🃗 🃘 🃙 🃚 🃛 🃝 🃞', '◆': '🃁 🃂 🃃 🃄 🃅 🃆 🃇 🃈 🃉 🃊 🃋 🃍 🃎', '❤': '🂱 🂲 🂳 🂴 🂵 🂶 🂷 🂸 🂹 🂺 🂻 🂽 🂾', '♠': '🂡 🂢 🂣 🂤 🂥 🂦 🂧 🂨 🂩 🂪 🂫 🂭 🂮'}
+    return {'♣': '🃑🃒🃓🃔🃕🃖🃗🃘🃙🃚🃛🃝🃞', '◆': '🃁🃂🃃🃄🃅🃆🃇🃈🃉🃊🃋🃍🃎', '❤': '🂱🂲🂳🂴🂵🂶🂷🂸🂹🂺🂻🂽🂾', '♠': '🂡🂢🂣🂤🂥🂦🂧🂨🂩🂪🂫🂭🂮'}
 
 
 class Card:
@@ -33,15 +33,6 @@ class Card:
         - self.value deberá almacenar el valor de la carta (1-13)'''
         self.value = value
         self.suit = suit
-        #simbolos = "♣◆❤♠"
-        """
-        if type(self.value) == str:
-            raise InvalidCardError(f'🃏 Invalid card: {repr(value)} is not a supported symbol')
-        if self.value < 1 or self.value > 13 :
-            raise InvalidCardError(f'🃏 Invalid card: {repr(value)} is not a supported value')
-        if suit != self.CLUBS or suit != self.DIAMONDS or suit != self.HEARTS or suit != self.SPADES:
-            raise InvalidCardError(f"🃏 Invalid card: {repr(suit)} is not a supported suit")
-        """
 
         if isinstance(self.value, str):
             if self.value != self.SYMBOLS:
@@ -66,7 +57,7 @@ class Card:
 
     def __repr__(self):
         '''Devuelve el glifo de la carta'''
-        return self.GLYPHS[self.suit]
+        return self.GLYPHS[self.suit][self.value - 1]
         
     
     def __eq__(self, other: Card | object):
@@ -88,7 +79,20 @@ class Card:
         1. El nuevo palo será el de la carta más alta.
         2. El nuevo valor será la suma de los valores de las cartas. Si valor pasa
         de 13 se convertirá en un AS.'''
-        ...
+        if self.value == 1:
+            valorFinal = 1
+            suitFinal = self.suit
+        else:
+            valorFinal = self.cmp_value + other.cmp_value
+            if self.value > other.value:
+                suitFinal = self.suit
+            else:
+                suitFinal = self.suit
+        if valorFinal > 13:
+            valorFinal = 1
+        return Card(valorFinal, suitFinal) 
+
+
 
     def is_ace(self) -> bool:
         '''Indica si una carta es un AS'''
@@ -102,13 +106,14 @@ class Card:
     @classmethod
     def get_cards_by_suit(cls, suit: str):
         '''Función generadora que devuelve los glifos de las cartas por su palo'''
-        if suit == cls.DIAMONDS:
-            return cls.GLYPHS
+        return cls.GLYPHS[suit]
 
 
 class InvalidCardError(Exception):
     '''Clase que representa un error de carta inválida.
     - El mensaje por defecto de esta excepción debe ser: 🃏 Invalid card
     - Si se añaden otros mensajes aparecerán como: 🃏 Invalid card: El mensaje que sea'''
+    def __init__(self, mensaje='🃏 Invalid card'):
+        super().__init__(mensaje)
 
-    ...
+ 
