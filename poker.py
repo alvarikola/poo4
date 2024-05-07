@@ -87,7 +87,7 @@ class Card:
             if self.value > other.value:
                 suitFinal = self.suit
             else:
-                suitFinal = self.suit
+                suitFinal = other.suit
         if valorFinal > 13:
             valorFinal = 1
         return Card(valorFinal, suitFinal) 
