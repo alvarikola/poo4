@@ -1,5 +1,5 @@
 import re
-class MinVoc:
+class RegExample:
     def __init__(self) -> None:
         pass
 
@@ -11,6 +11,10 @@ class MinVoc:
         result = re.findall(patron, texto)
         return result
     
+
+    @staticmethod
+    def validURL(url:str) -> bool:
+        patron = "^https://.+/$"
 
 
 
