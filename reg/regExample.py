@@ -14,7 +14,13 @@ class RegExample:
 
     @staticmethod
     def validURL(url:str) -> bool:
-        patron = "^https://.+/$"
+        patron = "^https://.+|^http://.+"
+        result = re.search(patron, url)
+        if result == None:
+            return False
+        else:
+            return True
+
 
 
 
