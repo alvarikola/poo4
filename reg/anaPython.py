@@ -3,16 +3,9 @@ import re
 class AnaPython:
     @staticmethod
     def countDef(codigo:str) -> int:
-        patron = "^def.+:$"
-        result = re.findall(patron, codigo) 
-        contador = 0
-        for i in range(len(result)):
-            contador += 1
-            print(i)
-        return contador
-    
-
-
+        patron = "def\s+\w+\(\):"
+        result = re.findall(patron, codigo)
+        return f"Se han encontrado {len(result)} funciones"
 
 if __name__ == "__main__":
     codigo = """
